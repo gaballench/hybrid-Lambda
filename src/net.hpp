@@ -43,14 +43,14 @@ class Tree{
   private:
     string label_interior_node(string in_str);
     void enumerate_internal_branch( Node &node );
-
     size_t first_coal_rank();
     size_t current_enum_;
     void init(){
-        this->current_enum_ = 0;
-        this->is_Net = false;
-        this->is_ultrametric = true;
-        }
+            this->current_enum_ = 0;
+            this->is_Net = false;
+            this->is_ultrametric = true;
+	    this->path_diff = 0.0;
+	}
 
     bool start_of_tax_name(string in_str, size_t i);
     size_t Parenthesis_balance_index_backwards( string &in_str, size_t i );
@@ -96,14 +96,14 @@ class Tree{
     Tree(string Tree_str);
     ~Tree(){};
 
-    vector <string> tax_name;
-    bool is_ultrametric; /*!< \brief true if the distances between tips and root are equal; false, otherwise */
-    bool is_Net; /*!< \brief true if Net is a network; false if it's a tree */
-
-  public:
-    vector < Node > NodeContainer;  /*!< \brief vector of nodes */
-    void rewrite_node_content();
-    string print_newick( Node * node );
+        vector <string> tax_name;
+        bool is_ultrametric; /*!< \brief true if the distances between tips and root are equal; false, otherwise */
+        double path_diff; /**!< \brief keeps the absolute difference of two paths*/
+        bool is_Net; /*!< \brief true if Net is a network; false if it's a tree */
+    public:
+        vector < Node > NodeContainer;  /*!< \brief vector of nodes */
+        void rewrite_node_content();
+        string print_newick( Node * node );
 };
 
 class Net: public Tree {
